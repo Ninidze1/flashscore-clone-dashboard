@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Shemajamebeli4(redo)</string>
+    <string name="second">second</string>
+    <string name="first">first</string>
+    <string name="overview">Overview</string>
+    <string name="statistic">Statistic</string>
+    <string name="line_up">Line Up</string>
+    <string name="dots">...</string>
+    <string name="ball_possesion">Ball Possesion</string>
+    <string name="actiontype">actiontype</string>
+</resources>
