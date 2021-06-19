@@ -14,7 +14,7 @@
         app:layout_constraintStart_toStartOf="@id/line"
         app:layout_constraintTop_toTopOf="@id/line"
         app:layout_constraintBottom_toBottomOf="@id/line"
-        app:srcCompat="@drawable/placeholder" />
+        app:srcCompat="@drawable/ic_dot" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/secondTeamRec"
@@ -30,7 +30,7 @@
         android:id="@+id/line"
         android:layout_width="1dp"
         android:layout_height="0dp"
-        android:background="#DEDFDF"
+        android:background="@color/light_gray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/secondTeamRec"
         app:layout_constraintStart_toEndOf="@id/firstTeamRec"

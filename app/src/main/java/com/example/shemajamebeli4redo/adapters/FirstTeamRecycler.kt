@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shemajamebeli4redo.R
-import com.example.shemajamebeli4redo.databinding.BlankItemLayoutBinding
-import com.example.shemajamebeli4redo.databinding.FirstTeamItemBinding
+import com.example.shemajamebeli4redo.databinding.ActionItemBinding
+import com.example.shemajamebeli4redo.databinding.SubstitutionItemBinding
 import com.example.shemajamebeli4redo.extensions.loadImg
 import com.example.shemajamebeli4redo.models.TeamAction
 
@@ -17,7 +17,23 @@ class FirstTeamRecycler(
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    inner class ViewHolder(private val binding: FirstTeamItemBinding) :
+    inner class SubstitutionViewHolder(private val binding: SubstitutionItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+            @SuppressLint("SetTextI18n")
+            fun bind () {
+                val model = summaries[adapterPosition]
+                binding.firstPlayer.text = model.action.player1?.playerName
+                binding.secondPlayer.text = model.action.player2?.playerName
+
+                binding.firstImage.loadImg(model.action.player1?.playerImage.toString())
+                binding.SecondImage.loadImg(model.action.player2?.playerImage.toString())
+
+                binding.action.text = "$actionTime' Substitution"
+
+            }
+        }
+
+    inner class ViewHolder(private val binding: ActionItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         @SuppressLint("SetTextI18n")
@@ -30,50 +46,62 @@ class FirstTeamRecycler(
             when(model.actionType) {
                 1 -> {
                     if (model.action.goalType == 1) {
-                        binding.actionType.text = "$actionTime' Goal by"
-                        binding.event3.setImageResource(R.drawable.goal)
+                        binding.actionType.text = "$actionTime' Goals by"
+                        binding.event3.setImageResource(R.drawable.ic_goal)
                     } else {
-                        binding.actionType.text = "$actionTime' Self goal by"
-                        binding.event3.setImageResource(R.drawable.selfgoal)
+                        binding.actionType.text = "$actionTime' Own Goal"
+                        binding.event3.setImageResource(R.drawable.ic_selfgoal)
                     }
                 }
                 2 -> {
                     binding.actionType.text = "$actionTime' Tripping"
-                    binding.event3.setImageResource(R.drawable.yellocard)
+                    binding.event3.setImageResource(R.drawable.ic_yellow)
 
                 }
                 3 -> {
-                    binding.actionType.text = "$actionTime' Red card to"
+                    binding.actionType.text = "$actionTime' Red Card"
                     binding.actionType.setTextColor(Color.RED)
-                    binding.event3.setImageResource(R.drawable.group_91)
+                    binding.event3.setImageResource(R.drawable.ic_red)
                 }
-                4 -> binding.actionType.text = "$actionTime' Substitution"
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return ViewHolder(
-            FirstTeamItemBinding.inflate(
+        return if (viewType == 1)
+            ViewHolder(
+            ActionItemBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
             )
         )
-
-
-
+        else SubstitutionViewHolder(
+            SubstitutionItemBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is ViewHolder -> holder.bind()
+            is SubstitutionViewHolder -> holder.bind()
         }
     }
 
     override fun getItemCount(): Int = summaries.size
 
-
+    override fun getItemViewType(position: Int): Int {
+        val model = summaries[position]
+        return if (model.action.player == null) {
+            2
+        } else {
+            1
+        }
+    }
 
 
 }

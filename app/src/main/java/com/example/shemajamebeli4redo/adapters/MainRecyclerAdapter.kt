@@ -1,6 +1,5 @@
 package com.example.shemajamebeli4redo.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -54,4 +53,5 @@ class MainRecyclerAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         this.actions.addAll(actions)
         notifyDataSetChanged()
     }
+
 }
