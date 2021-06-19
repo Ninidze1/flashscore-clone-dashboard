@@ -46,7 +46,8 @@
 
     <TextView
         android:id="@+id/name"
-        android:layout_width="51dp"
+        android:gravity="start"
+        android:layout_width="60dp"
         android:layout_height="16dp"
         android:textStyle="bold"
         android:layout_marginStart="8dp"

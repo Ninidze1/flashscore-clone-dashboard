@@ -1,11 +1,10 @@
 package com.example.shemajamebeli4redo.adapters
 
-import android.annotation.SuppressLint
 import android.graphics.Color
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.shemajamebeli4redo.App
 import com.example.shemajamebeli4redo.R
 import com.example.shemajamebeli4redo.databinding.ActionItemBinding
 import com.example.shemajamebeli4redo.databinding.SubstitutionItemBinding
@@ -21,7 +20,7 @@ class SecondTeamRecycler(
 
     inner class SubstitutionViewHolder(private val binding: SubstitutionItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        @SuppressLint("SetTextI18n")
+
         fun bind () {
             binding.root.mirrorView()
             val model = summaries[adapterPosition]
@@ -32,7 +31,6 @@ class SecondTeamRecycler(
             binding.firstImage.loadImg(model.action.player1?.playerImage.toString())
             binding.SecondImage.loadImg(model.action.player2?.playerImage.toString())
 
-            binding.action.text = "$actionTime' Substitution"
 
         }
     }
@@ -40,7 +38,6 @@ class SecondTeamRecycler(
     inner class ViewHolder(private val binding: ActionItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        @SuppressLint("SetTextI18n")
         fun bind() {
             binding.root.mirrorView()
             val model = summaries[adapterPosition]
@@ -50,21 +47,21 @@ class SecondTeamRecycler(
             when(model.actionType) {
                 1 -> {
                     if (model.action.goalType == 1) {
-                        binding.actionType.text = "$actionTime' Goals by"
+                        binding.actionType.text = App.context.getString(R.string.goal, actionTime)
                         binding.event3.setImageResource(R.drawable.ic_goal)
                     } else {
-                        binding.actionType.text = "$actionTime' Own Goal"
+                        binding.actionType.text = App.context.getString(R.string.own_goal, actionTime)
                         binding.actionType.setTextColor(Color.RED)
                         binding.event3.setImageResource(R.drawable.ic_selfgoal)
                     }
                 }
                 2 -> {
-                    binding.actionType.text = "$actionTime' Tripping"
+                    binding.actionType.text = App.context.getString(R.string.yellow_card, actionTime)
                     binding.event3.setImageResource(R.drawable.ic_yellow)
-
                 }
+
                 3 -> {
-                    binding.actionType.text = "$actionTime' Red Card"
+                    binding.actionType.text = App.context.getString(R.string.red_card, actionTime)
                     binding.actionType.setTextColor(Color.RED)
                     binding.event3.setImageResource(R.drawable.ic_red)
                 }

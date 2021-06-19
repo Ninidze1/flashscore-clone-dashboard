@@ -3,20 +3,63 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/white"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".fragments.MainFragment">
+
+    <FrameLayout
+        android:id="@+id/firsthalf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@color/light_light_gray"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/recylcer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/progressBar">
+
+        <TextView
+            android:id="@+id/halfIdentifyer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
+            android:text="1st Half"
+            android:textColor="@color/gray"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SmallSp" />
+
+        <TextView
+            android:id="@+id/score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="1dp"
+            android:layout_gravity="end"
+            android:textColor="@color/gray"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SmallSp" />
+
+    </FrameLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recylcer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar"
+        app:layout_constraintTop_toBottomOf="@+id/firsthalf"
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
@@ -38,8 +81,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:textSize="12sp"
         android:textColor="@color/gray"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/dateTextView"
@@ -55,6 +98,27 @@
         app:layout_constraintBottom_toTopOf="@id/firstTeamName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dateTextView" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/ic_favourite"
+        app:layout_constraintBottom_toBottomOf="@+id/teamFirstImage"
+        app:layout_constraintEnd_toStartOf="@+id/teamFirstImage"
+        app:layout_constraintTop_toTopOf="@+id/teamFirstImage" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="16dp"
+        android:src="@drawable/ic_favourite"
+        app:layout_constraintBottom_toBottomOf="@+id/teamSecondImage"
+        app:layout_constraintStart_toEndOf="@+id/teamSecondImage"
+        app:layout_constraintTop_toTopOf="@+id/teamSecondImage" />
+
 
     <ImageView
         android:id="@+id/teamSecondImage"
@@ -111,9 +175,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:text="@string/dots"
         android:textColor="@color/black"
         android:textSize="12sp"
-        android:text="@string/dots"
         app:layout_constraintEnd_toEndOf="@+id/teamSecondImage"
         app:layout_constraintStart_toStartOf="@+id/teamSecondImage"
         app:layout_constraintTop_toBottomOf="@+id/teamSecondImage" />
@@ -138,7 +202,6 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="horizontal">
-
 
             <TextView
                 android:id="@+id/textView20"
@@ -184,10 +247,10 @@
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="0dp"
-        android:progressDrawable="@drawable/progressbar"
-        android:focusable="false"
         android:layout_height="5dp"
         android:layout_marginTop="8dp"
+        android:focusable="false"
+        android:progressDrawable="@drawable/progressbar"
         app:layout_constraintEnd_toEndOf="@+id/cardView"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/cardView"
@@ -198,33 +261,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:textSize="12sp"
-        android:layout_marginTop="8dp"
         android:textColor="@color/gray"
-        app:layout_constraintBottom_toTopOf="@+id/progressBar"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/ballPossesion"
         app:layout_constraintStart_toStartOf="@+id/progressBar"
-        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+        app:layout_constraintTop_toTopOf="@+id/ballPossesion" />
 
     <TextView
         android:id="@+id/secondPossesion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:textSize="12sp"
         android:textColor="@color/gray"
-        app:layout_constraintBottom_toTopOf="@+id/progressBar"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/ballPossesion"
         app:layout_constraintEnd_toEndOf="@+id/progressBar"
-        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+        app:layout_constraintTop_toTopOf="@+id/ballPossesion" />
 
     <TextView
         android:id="@+id/ballPossesion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:textSize="12sp"
         android:text="@string/ball_possesion"
         android:textColor="@color/gray"
+        android:textSize="12sp"
         app:layout_constraintEnd_toStartOf="@+id/secondPossesion"
         app:layout_constraintStart_toEndOf="@+id/firstPossesion"
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
