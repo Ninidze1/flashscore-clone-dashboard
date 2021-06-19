@@ -1,9 +1,7 @@
 package com.example.shemajamebeli4redo.fragments
 
 import android.annotation.SuppressLint
-import android.graphics.Color
 import android.os.Bundle
-import android.util.Log.d
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,12 +9,13 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
 import com.example.shemajamebeli4redo.App
 import com.example.shemajamebeli4redo.R
 import com.example.shemajamebeli4redo.adapters.MainRecyclerAdapter
 import com.example.shemajamebeli4redo.databinding.MainFragmentBinding
 import com.example.shemajamebeli4redo.extensions.loadImg
+import com.example.shemajamebeli4redo.models.Match
+import com.example.shemajamebeli4redo.models.ResultHandle
 import com.example.shemajamebeli5.fragments.MainViewModel
 import java.text.SimpleDateFormat
 import java.util.*
@@ -45,39 +44,42 @@ class MainFragment : Fragment() {
 
     }
 
-    @SuppressLint("SetTextI18n")
     private fun setInfo() {
         viewModel._matchInfo.observe(viewLifecycleOwner, {
+            when (it.status) {
+                ResultHandle.Companion.Status.SUCCESS -> {
+                    val model = it.data!!.match
 
-            val model = it.match
+                    binding.teamFirstImage.loadImg(model.team1.teamImage)
+                    binding.teamSecondImage.loadImg(model.team2.teamImage)
 
-            binding.teamFirstImage.loadImg(model.team1.teamImage)
-            binding.teamSecondImage.loadImg(model.team2.teamImage)
+                    binding.fieldTextView.text = model.stadiumAdress
+                    binding.dateTextView.text = getDataTime(model.matchDate)
+                    binding.firstTeamName.text = model.team1.teamName
+                    binding.secondTeamName.text = model.team2.teamName
+                    binding.duration.text = App.context.getString(R.string.time_format, model.matchTime.roundToInt().toString())
 
-            binding.fieldTextView.text = model.stadiumAdress
-            binding.dateTextView.text = getDataTime(model.matchDate)
-            binding.firstTeamName.text = model.team1.teamName
-            binding.secondTeamName.text = model.team2.teamName
-            binding.duration.text = model.matchTime.roundToInt().toString() + "'"
+                    binding.scoreTextView.text =
+                        App.context.getString(R.string.result, model.team1.score, model.team2.score)
 
-            binding.scoreTextView.text =
-                model.team1.score.toString() + " : " + model.team2.score.toString()
+                    binding.firstPossesion.text = App.context.getString(R.string.possession, model.team1.ballPosition)
+                    binding.secondPossesion.text = App.context.getString(R.string.possession, model.team2.ballPosition)
+                    binding.progressBar.progress = model.team1.ballPosition!!
+                    adapter.addActions(model.matchSummary.summaries.toMutableList())
+                    firstHalfScores(binding.score, it)
 
-            binding.firstPossesion.text = model.team1.ballPosition.toString() + "%"
-            binding.secondPossesion.text = model.team2.ballPosition.toString() + "%"
-            binding.progressBar.progress = model.team1.ballPosition!!
-            adapter.addActions(model.matchSummary.summaries.toMutableList())
+                }
+                ResultHandle.Companion.Status.ERROR -> {
 
-            firstHalfScores(binding.score)
-
+                }
+            }
         })
     }
 
-    private fun firstHalfScores(dashboard: TextView) {
-        viewModel._matchInfo.observe(viewLifecycleOwner, {
-            val model = it.match
+    private fun firstHalfScores(dashboard: TextView, matchInfo: ResultHandle<Match>) {
+            val model = matchInfo.data!!.match
             var firstScores = 0
-            var secondScors = 0
+            var secondScores = 0
 
             // scored to opponents (first team)
             model.matchSummary.summaries.forEach { summaries ->
@@ -105,7 +107,7 @@ class MainFragment : Fragment() {
                 if (summaries.actionTime.toInt() < 45) {
                     summaries.team2Action?.forEach { actions ->
                         if (actions.actionType == 1 && actions.action.goalType == 1) {
-                            secondScors++
+                            secondScores++
                         }
                     }
                 }
@@ -116,18 +118,17 @@ class MainFragment : Fragment() {
                 if (summaries.actionTime.toInt() < 45) {
                     summaries.team1Action?.forEach { actions ->
                         if (actions.actionType == 1 && actions.action.goalType != 1)
-                            secondScors++
+                            secondScores++
                     }
                 }
             }
-            dashboard.text = App.context.getString(R.string.first_half, firstScores, secondScors)
-        })
+            dashboard.text = App.context.getString(R.string.first_half, firstScores, secondScores)
     }
 
 
     @SuppressLint("SimpleDateFormat")
     private fun getDataTime(date: Long): String {
-        val form = SimpleDateFormat("dd MM yyyy")
+        val form = SimpleDateFormat("dd MMMM yyyy")
         return form.format(Date(date))
     }
 

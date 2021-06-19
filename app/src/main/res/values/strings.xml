@@ -5,14 +5,21 @@
     <string name="overview">Overview</string>
     <string name="statistic">Statistic</string>
     <string name="line_up">Line Up</string>
-    <string name="dots">...</string>
-    <string name="ball_possesion">Ball Possesion</string>
+    <string name="dots">…</string>
+    <string name="ball_possesion">Ball Possession</string>
     <string name="actiontype">actiontype</string>
     <string name="red_card">%1$s\' Red Card</string>
     <string name="yellow_card">%1$s\' Tripping</string>
     <string name="own_goal">%1$s\' Own Goal</string>
     <string name="goal">%1$s\' Goals by</string>
+    <string name="time_format">%1$s\'</string>
+    <string name="possession">%1$d%%</string>
+    <string name="initals">%1$s.</string>
     <string name="first_half">%1$d\:%2$d</string>
+    <string name="result">%1$d\ : %2$d</string>
+    <string name="substitution">%1$s\' Substitution</string>
+    <string name="gameweek_3">Gameweek 3</string>
+    <string name="match_preview">Match Preview</string>
 
 
 </resources>

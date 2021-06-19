@@ -5,8 +5,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.bumptech.glide.load.HttpException
 import com.example.shemajamebeli4redo.models.Action
 import com.example.shemajamebeli4redo.models.Match
+import com.example.shemajamebeli4redo.models.ResultHandle
 import com.example.shualeduri.api.RetrofitInstance
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -15,16 +17,10 @@ import java.net.SocketTimeoutException
 
 class MainViewModel : ViewModel() {
 
-    private val matchInfo = MutableLiveData<Match>().apply {
-        mutableListOf<Match>()
+    private val matchInfo = MutableLiveData<ResultHandle<Match>>().apply {
+        mutableListOf<ResultHandle<Match>>()
     }
-    val _matchInfo: LiveData<Match> = matchInfo
-
-    private val actionsInfo = MutableLiveData<Match>().apply {
-        mutableListOf<Match>()
-    }
-    val _actionsInfo: LiveData<Match> = matchInfo
-
+    val _matchInfo: LiveData<ResultHandle<Match>> = matchInfo
 
     fun init() {
         viewModelScope.launch {
@@ -33,9 +29,11 @@ class MainViewModel : ViewModel() {
                     val result = RetrofitInstance.api.getPost()
                     if (result.isSuccessful) {
                         val item = result.body()
-                        matchInfo.postValue(item)
+                        matchInfo.postValue(ResultHandle.success(item))
+                    } else {
+                        matchInfo.postValue(ResultHandle.error(result.message()))
                     }
-                } catch (e: SocketTimeoutException) {
+                } catch (e: HttpException) {
                     Log.d("timeoutEx", "${e.message}")
                 }
             }

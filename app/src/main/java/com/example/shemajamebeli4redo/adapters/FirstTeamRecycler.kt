@@ -2,6 +2,7 @@ package com.example.shemajamebeli4redo.adapters
 
 import android.annotation.SuppressLint
 import android.graphics.Color
+import android.util.Log.d
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -9,6 +10,7 @@ import com.example.shemajamebeli4redo.App
 import com.example.shemajamebeli4redo.R
 import com.example.shemajamebeli4redo.databinding.ActionItemBinding
 import com.example.shemajamebeli4redo.databinding.SubstitutionItemBinding
+import com.example.shemajamebeli4redo.extensions.getInitials
 import com.example.shemajamebeli4redo.extensions.loadImg
 import com.example.shemajamebeli4redo.models.TeamAction
 
@@ -24,12 +26,13 @@ class FirstTeamRecycler(
 
             fun bind () {
                 val model = summaries[adapterPosition]
-                binding.firstPlayer.text = model.action.player1?.playerName
-                binding.secondPlayer.text = model.action.player2?.playerName
+                binding.firstPlayer.text = App.context.getString(R.string.initals, model.action.player1?.playerName?.getInitials())
+                binding.secondPlayer.text = App.context.getString(R.string.initals, model.action.player2?.playerName?.getInitials())
 
                 binding.firstImage.loadImg(model.action.player1?.playerImage.toString())
                 binding.SecondImage.loadImg(model.action.player2?.playerImage.toString())
 
+                binding.action.text = App.context.getString(R.string.substitution, actionTime)
             }
         }
 
@@ -39,7 +42,8 @@ class FirstTeamRecycler(
         fun bind() {
             val model = summaries[adapterPosition]
             binding.playerImage.loadImg(model.action.player?.playerImage.toString())
-            binding.name.text = model.action.player?.playerName
+            binding.name.text = App.context.getString(R.string.initals, model.action.player?.playerName?.getInitials())
+
 
 
             when(model.actionType) {
@@ -101,6 +105,5 @@ class FirstTeamRecycler(
             1
         }
     }
-
 
 }

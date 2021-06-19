@@ -90,8 +90,8 @@
 
     <ImageView
         android:id="@+id/teamFirstImage"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
         android:layout_marginStart="50dp"
         android:layout_marginTop="28dp"
         android:src="@mipmap/placeholder"
@@ -100,7 +100,7 @@
         app:layout_constraintTop_toBottomOf="@+id/dateTextView" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/firstFavourite"
         android:layout_width="18dp"
         android:layout_height="18dp"
         android:layout_marginEnd="16dp"
@@ -110,7 +110,7 @@
         app:layout_constraintTop_toTopOf="@+id/teamFirstImage" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/secondFavourite"
         android:layout_width="18dp"
         android:layout_height="18dp"
         android:layout_marginStart="16dp"
@@ -122,8 +122,8 @@
 
     <ImageView
         android:id="@+id/teamSecondImage"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="55dp"
+        android:layout_height="50dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="50dp"
         android:src="@mipmap/placeholder"
@@ -136,11 +136,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="60dp"
-        android:text=""
         android:textColor="@color/black"
-        android:textSize="25sp"
+        android:textSize="28sp"
         app:layout_constraintBottom_toTopOf="@+id/duration"
         app:layout_constraintEnd_toStartOf="@+id/teamSecondImage"
         app:layout_constraintStart_toEndOf="@+id/teamFirstImage"
@@ -151,7 +150,7 @@
         android:id="@+id/duration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="1dp"
         android:textColor="@color/gray"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="@+id/scoreTextView"
@@ -187,7 +186,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="34dp"
         android:layout_marginEnd="12dp"
         android:backgroundTint="#f6f6f6"
         android:padding="8dp"
@@ -248,7 +247,7 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="0dp"
         android:layout_height="5dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:focusable="false"
         android:progressDrawable="@drawable/progressbar"
         app:layout_constraintEnd_toEndOf="@+id/cardView"
@@ -262,7 +261,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:textColor="@color/gray"
-        android:textSize="12sp"
+        android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="@+id/ballPossesion"
         app:layout_constraintStart_toStartOf="@+id/progressBar"
         app:layout_constraintTop_toTopOf="@+id/ballPossesion" />
@@ -273,7 +272,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:textColor="@color/gray"
-        android:textSize="12sp"
+        android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="@+id/ballPossesion"
         app:layout_constraintEnd_toEndOf="@+id/progressBar"
         app:layout_constraintTop_toTopOf="@+id/ballPossesion" />
@@ -282,10 +281,10 @@
         android:id="@+id/ballPossesion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="15dp"
         android:text="@string/ball_possesion"
         android:textColor="@color/gray"
-        android:textSize="12sp"
+        android:textSize="13sp"
         app:layout_constraintEnd_toStartOf="@+id/secondPossesion"
         app:layout_constraintStart_toEndOf="@+id/firstPossesion"
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
