@@ -20,6 +20,11 @@
     <string name="substitution">%1$s\' Substitution</string>
     <string name="gameweek_3">Gameweek 3</string>
     <string name="match_preview">Match Preview</string>
+    <string name="matches">Matches</string>
+    <string name="top_players">Top Players</string>
+    <string name="videos">Videos</string>
+    <string name="favourites">Favourites</string>
+    <string name="settings">Settings</string>
 
 
 </resources>

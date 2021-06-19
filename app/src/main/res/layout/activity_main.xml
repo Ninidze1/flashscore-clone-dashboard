@@ -3,24 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@drawable/ic_background"
     android:layout_height="match_parent"
+    android:background="@drawable/ic_background"
     tools:context=".MainActivity">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_host_fragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="0dp"
+        android:paddingTop="8dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
         android:layout_height="0dp"
-        android:layout_marginTop="80dp"
-        android:background="@drawable/shape"
-        android:padding="8dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="80dp"
         android:layout_marginEnd="16dp"
+        android:background="@drawable/shape"
         app:defaultNavHost="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/bottomAppBar"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:navGraph="@navigation/main_navigation" />
 
@@ -28,11 +30,12 @@
         android:id="@+id/main_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/halvetica_neue_regular"
         android:gravity="center_horizontal"
-        android:textColor="@color/white"
-        android:textSize="17sp"
         android:text="@string/match_preview"
+        android:textColor="@color/white"
+        android:textSize="18sp"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,17 +46,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
+        android:fontFamily="@font/halvetica_neue_regular"
         android:gravity="center_horizontal"
-        android:textColor="#95FFFFFF"
         android:text="@string/gameweek_3"
-        android:textSize="14sp"
+        android:textColor="#95FFFFFF"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/main_title" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/notificationButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -65,7 +69,7 @@
         app:srcCompat="@drawable/ic_notifications" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/backButton"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_marginStart="30dp"
@@ -75,6 +79,20 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/ic_back_button" />
+
+    <com.ismaeldivita.chipnavigation.ChipNavigationBar
+        android:id="@+id/bottomAppBar"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/main_color"
+        app:cnb_menuResource="@menu/bottom_nav_menu"
+        app:cnb_unselectedColor	="#9CFFFFFF"
+        app:cnb_badgeColor="@color/red"
+        android:layout_gravity="bottom"
+        app:cnb_orientationMode="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

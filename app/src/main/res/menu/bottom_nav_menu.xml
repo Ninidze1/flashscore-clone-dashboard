@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/navigation_matches"
+        android:icon="@drawable/ic_matches"
+        app:cnb_iconColor="@color/white"
+        android:title="@string/matches" />
+
+    <item
+        android:id="@+id/navigation_top"
+        android:icon="@drawable/ic_top"
+        app:cnb_iconColor="@color/white"
+        android:title="@string/top_players"/>
+
+    <item
+        android:id="@+id/navigation_videos"
+        app:cnb_iconColor="@color/white"
+        android:icon="@drawable/ic_video"
+        android:title="@string/videos" />
+
+    <item
+        android:id="@+id/navigation_fav"
+        android:icon="@drawable/ic_favourites"
+        app:cnb_iconColor="@color/white"
+        android:title="@string/favourites" />
+
+    <item
+        android:id="@+id/navigation_settings"
+        app:cnb_iconColor="@color/white"
+        android:icon="@drawable/ic_setting"
+        android:title="@string/settings" />
+</menu>

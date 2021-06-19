@@ -1,6 +1,7 @@
 package com.example.shemajamebeli4redo.fragments
 
 import android.annotation.SuppressLint
+import android.graphics.Typeface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,10 +14,12 @@ import com.example.shemajamebeli4redo.App
 import com.example.shemajamebeli4redo.R
 import com.example.shemajamebeli4redo.adapters.MainRecyclerAdapter
 import com.example.shemajamebeli4redo.databinding.MainFragmentBinding
+import com.example.shemajamebeli4redo.extensions.changeColor
 import com.example.shemajamebeli4redo.extensions.loadImg
+import com.example.shemajamebeli4redo.extensions.showToast
 import com.example.shemajamebeli4redo.models.Match
 import com.example.shemajamebeli4redo.models.ResultHandle
-import com.example.shemajamebeli5.fragments.MainViewModel
+import com.example.shemajamebeli4redo.viewmodels.MainViewModel
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.roundToInt
@@ -42,6 +45,31 @@ class MainFragment : Fragment() {
         setInfo()
         mainRecyclerInit()
 
+        binding.firstFavourite.setOnClickListener {
+            firstToFavourites()
+        }
+
+        binding.secondFavourite.setOnClickListener {
+            secondToFavourites()
+        }
+
+        binding.overview.setOnClickListener {
+            binding.overview.changeColor(R.color.main_color)
+            binding.statistic.changeColor(R.color.text_gray)
+            binding.lineup.changeColor(R.color.text_gray)
+        }
+
+        binding.statistic.setOnClickListener {
+            binding.statistic.changeColor(R.color.main_color)
+            binding.overview.changeColor(R.color.text_gray)
+            binding.lineup.changeColor(R.color.text_gray)
+        }
+
+        binding.lineup.setOnClickListener {
+            binding.lineup.changeColor(R.color.main_color)
+            binding.statistic.changeColor(R.color.text_gray)
+            binding.overview.changeColor(R.color.text_gray)
+        }
     }
 
     private fun setInfo() {
@@ -59,18 +87,18 @@ class MainFragment : Fragment() {
                     binding.secondTeamName.text = model.team2.teamName
                     binding.duration.text = App.context.getString(R.string.time_format, model.matchTime.roundToInt().toString())
 
-                    binding.scoreTextView.text =
-                        App.context.getString(R.string.result, model.team1.score, model.team2.score)
+                    binding.scoreTextView.text = App.context.getString(R.string.result, model.team1.score, model.team2.score)
 
                     binding.firstPossesion.text = App.context.getString(R.string.possession, model.team1.ballPosition)
                     binding.secondPossesion.text = App.context.getString(R.string.possession, model.team2.ballPosition)
+
                     binding.progressBar.progress = model.team1.ballPosition!!
                     adapter.addActions(model.matchSummary.summaries.toMutableList())
                     firstHalfScores(binding.score, it)
 
                 }
                 ResultHandle.Companion.Status.ERROR -> {
-
+                    requireActivity().showToast(it.error)
                 }
             }
         })
@@ -125,7 +153,6 @@ class MainFragment : Fragment() {
             dashboard.text = App.context.getString(R.string.first_half, firstScores, secondScores)
     }
 
-
     @SuppressLint("SimpleDateFormat")
     private fun getDataTime(date: Long): String {
         val form = SimpleDateFormat("dd MMMM yyyy")
@@ -138,5 +165,14 @@ class MainFragment : Fragment() {
         binding.recylcer.adapter = adapter
     }
 
+    private fun firstToFavourites() {
+        binding.secondFavourite.setImageResource(R.drawable.ic_favourite)
+        binding.firstFavourite.setImageResource(R.drawable.ic_favourites_selected)
+    }
+
+    private fun secondToFavourites() {
+        binding.firstFavourite.setImageResource(R.drawable.ic_favourite)
+        binding.secondFavourite.setImageResource(R.drawable.ic_favourites_selected)
+    }
 
 }

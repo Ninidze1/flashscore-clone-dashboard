@@ -1,4 +1,4 @@
-package com.example.shemajamebeli5.fragments
+package com.example.shemajamebeli4redo.viewmodels
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -6,14 +6,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bumptech.glide.load.HttpException
-import com.example.shemajamebeli4redo.models.Action
 import com.example.shemajamebeli4redo.models.Match
 import com.example.shemajamebeli4redo.models.ResultHandle
 import com.example.shualeduri.api.RetrofitInstance
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.net.SocketTimeoutException
 
 class MainViewModel : ViewModel() {
 
