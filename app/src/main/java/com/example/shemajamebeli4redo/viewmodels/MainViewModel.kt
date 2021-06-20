@@ -8,7 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.bumptech.glide.load.HttpException
 import com.example.shemajamebeli4redo.models.Match
 import com.example.shemajamebeli4redo.models.ResultHandle
-import com.example.shualeduri.api.RetrofitInstance
+import com.example.shemajamebeli4redo.network.RetrofitInstance
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

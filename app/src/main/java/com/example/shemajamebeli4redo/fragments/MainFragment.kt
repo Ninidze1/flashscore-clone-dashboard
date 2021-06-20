@@ -1,14 +1,9 @@
 package com.example.shemajamebeli4redo.fragments
 
 import android.annotation.SuppressLint
-import android.graphics.Typeface
-import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.shemajamebeli4redo.App
 import com.example.shemajamebeli4redo.R
@@ -24,20 +19,15 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.roundToInt
 
-class MainFragment : Fragment() {
-
-    private lateinit var binding: MainFragmentBinding
-    private val viewModel: MainViewModel by viewModels()
+class MainFragment : BaseFragment<MainFragmentBinding, MainViewModel>(
+    MainFragmentBinding::inflate,
+    MainViewModel::class.java
+) {
 
     private lateinit var adapter: MainRecyclerAdapter
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = MainFragmentBinding.inflate(inflater, container, false)
+    override fun setUp(inflater: LayoutInflater, container: ViewGroup?) {
         init()
-        return binding.root
     }
 
     private fun init() {
@@ -45,30 +35,30 @@ class MainFragment : Fragment() {
         setInfo()
         mainRecyclerInit()
 
-        binding.firstFavourite.setOnClickListener {
+        binding?.firstFavourite?.setOnClickListener {
             firstToFavourites()
         }
 
-        binding.secondFavourite.setOnClickListener {
+        binding?.secondFavourite?.setOnClickListener {
             secondToFavourites()
         }
 
-        binding.overview.setOnClickListener {
-            binding.overview.changeColor(R.color.main_color)
-            binding.statistic.changeColor(R.color.text_gray)
-            binding.lineup.changeColor(R.color.text_gray)
+        binding?.overview?.setOnClickListener {
+            binding!!.overview.changeColor(R.color.main_color)
+            binding!!.statistic.changeColor(R.color.text_gray)
+            binding!!.lineup.changeColor(R.color.text_gray)
         }
 
-        binding.statistic.setOnClickListener {
-            binding.statistic.changeColor(R.color.main_color)
-            binding.overview.changeColor(R.color.text_gray)
-            binding.lineup.changeColor(R.color.text_gray)
+        binding!!.statistic.setOnClickListener {
+            binding!!.statistic.changeColor(R.color.main_color)
+            binding!!.overview.changeColor(R.color.text_gray)
+            binding!!.lineup.changeColor(R.color.text_gray)
         }
 
-        binding.lineup.setOnClickListener {
-            binding.lineup.changeColor(R.color.main_color)
-            binding.statistic.changeColor(R.color.text_gray)
-            binding.overview.changeColor(R.color.text_gray)
+        binding!!.lineup.setOnClickListener {
+            binding!!.lineup.changeColor(R.color.main_color)
+            binding!!.statistic.changeColor(R.color.text_gray)
+            binding!!.overview.changeColor(R.color.text_gray)
         }
     }
 
@@ -78,23 +68,23 @@ class MainFragment : Fragment() {
                 ResultHandle.Companion.Status.SUCCESS -> {
                     val model = it.data!!.match
 
-                    binding.teamFirstImage.loadImg(model.team1.teamImage)
-                    binding.teamSecondImage.loadImg(model.team2.teamImage)
+                    binding!!.teamFirstImage.loadImg(model.team1.teamImage)
+                    binding!!.teamSecondImage.loadImg(model.team2.teamImage)
 
-                    binding.fieldTextView.text = model.stadiumAdress
-                    binding.dateTextView.text = getDataTime(model.matchDate)
-                    binding.firstTeamName.text = model.team1.teamName
-                    binding.secondTeamName.text = model.team2.teamName
-                    binding.duration.text = App.context.getString(R.string.time_format, model.matchTime.roundToInt().toString())
+                    binding!!.fieldTextView.text = model.stadiumAdress
+                    binding!!.dateTextView.text = getDataTime(model.matchDate)
+                    binding!!.firstTeamName.text = model.team1.teamName
+                    binding!!.secondTeamName.text = model.team2.teamName
+                    binding!!.duration.text = App.context.getString(R.string.time_format, model.matchTime.roundToInt().toString())
 
-                    binding.scoreTextView.text = App.context.getString(R.string.result, model.team1.score, model.team2.score)
+                    binding!!.scoreTextView.text = App.context.getString(R.string.result, model.team1.score, model.team2.score)
 
-                    binding.firstPossesion.text = App.context.getString(R.string.possession, model.team1.ballPosition)
-                    binding.secondPossesion.text = App.context.getString(R.string.possession, model.team2.ballPosition)
+                    binding!!.firstPossesion.text = App.context.getString(R.string.possession, model.team1.ballPosition)
+                    binding!!.secondPossesion.text = App.context.getString(R.string.possession, model.team2.ballPosition)
 
-                    binding.progressBar.progress = model.team1.ballPosition!!
+                    binding!!.progressBar.progress = model.team1.ballPosition!!
                     adapter.addActions(model.matchSummary.summaries.toMutableList())
-                    firstHalfScores(binding.score, it)
+                    firstHalfScores(binding!!.score, it)
 
                 }
                 ResultHandle.Companion.Status.ERROR -> {
@@ -161,18 +151,18 @@ class MainFragment : Fragment() {
 
     private fun mainRecyclerInit() {
         adapter = MainRecyclerAdapter()
-        binding.recylcer.layoutManager = LinearLayoutManager(requireContext())
-        binding.recylcer.adapter = adapter
+        binding!!.recylcer.layoutManager = LinearLayoutManager(requireContext())
+        binding!!.recylcer.adapter = adapter
     }
 
     private fun firstToFavourites() {
-        binding.secondFavourite.setImageResource(R.drawable.ic_favourite)
-        binding.firstFavourite.setImageResource(R.drawable.ic_favourites_selected)
+        binding!!.secondFavourite.setImageResource(R.drawable.ic_favourite)
+        binding!!.firstFavourite.setImageResource(R.drawable.ic_favourites_selected)
     }
 
     private fun secondToFavourites() {
-        binding.firstFavourite.setImageResource(R.drawable.ic_favourite)
-        binding.secondFavourite.setImageResource(R.drawable.ic_favourites_selected)
+        binding!!.firstFavourite.setImageResource(R.drawable.ic_favourite)
+        binding!!.secondFavourite.setImageResource(R.drawable.ic_favourites_selected)
     }
 
 }
