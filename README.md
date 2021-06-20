@@ -1,4 +1,5 @@
+
 # vitoFlashscore
-<p align="center">
-  <img width="360" height="640" src="https://i.ibb.co/r2nPHWv/Screenshot-1624140279.png">
-</p>
+
+![screen](https://user-images.githubusercontent.com/73029688/122672247-9bfca180-d1db-11eb-9d18-3e580a689769.gif)
+
