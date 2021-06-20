@@ -1,4 +1,4 @@
-package com.example.shemajamebeli4redo.fragments
+package com.example.shemajamebeli4redo.base
 
 import android.os.Bundle
 import android.view.LayoutInflater

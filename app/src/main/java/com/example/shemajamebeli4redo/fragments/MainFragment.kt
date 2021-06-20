@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.shemajamebeli4redo.App
 import com.example.shemajamebeli4redo.R
 import com.example.shemajamebeli4redo.adapters.MainRecyclerAdapter
+import com.example.shemajamebeli4redo.base.BaseFragment
 import com.example.shemajamebeli4redo.databinding.MainFragmentBinding
 import com.example.shemajamebeli4redo.extensions.changeColor
 import com.example.shemajamebeli4redo.extensions.loadImg
