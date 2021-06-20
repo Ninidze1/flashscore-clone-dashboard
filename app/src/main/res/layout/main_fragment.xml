@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    app:layoutDescription="@xml/main_fragment_scene"
     tools:context=".fragments.MainFragment">
 
     <FrameLayout
         android:id="@+id/firsthalf"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="240dp"
         android:background="@color/light_light_gray"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@id/recylcer"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/progressBar">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/halfIdentifyer"
@@ -68,11 +69,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:textColor="@color/main_color"
         android:fontFamily="@font/halvetica_neue_regular"
+        android:textColor="@color/main_color"
         android:textSize="12sp"
         app:layout_constraintEnd_toStartOf="@+id/fieldTextView"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -86,14 +86,13 @@
         android:textColor="@color/gray2"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/dateTextView"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/teamFirstImage"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_marginStart="50dp"
         android:layout_marginTop="28dp"
         android:src="@mipmap/placeholder"
@@ -124,8 +123,8 @@
 
     <ImageView
         android:id="@+id/teamSecondImage"
-        android:layout_width="55dp"
-        android:layout_height="50dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="50dp"
         android:src="@mipmap/placeholder"
@@ -300,4 +299,4 @@
         app:layout_constraintStart_toEndOf="@+id/firstPossesion"
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.motion.widget.MotionLayout>
